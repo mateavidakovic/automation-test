@@ -15,3 +15,10 @@ test('can open home page', async ({ page }) => {
   // Expects page to have a Categories.
   await expect(page.getByText('Categories')).toBeVisible();
 });
+
+test ('Phones link has display:flex' , async ({ page }) => {
+  await page.goto( 'https://www.demoblaze.com/index.html' );
+
+  const phonesLink = page.getByRole('link', { name: 'Phones' });
+  await expect(phonesLink).toHaveCSS('display', 'flex');
+});
