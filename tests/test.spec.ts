@@ -12,9 +12,22 @@ test('can open home page', async ({ page }) => {
   // Click the home link.
   await page.getByRole('link', { name: 'Home ' }).click();
 
+  //Click the contact link.
+  await page.getByRole('link', { name: 'Contact'}).click();
+
   // Expects page to have a Categories.
   await expect(page.getByText('Categories')).toBeVisible();
 });
+
+test('can navigate to cart page', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.getByRole('link', { name: 'Cart' }).click();
+
+  await expect(page).toHaveURL(/cart\.html/);
+});
+
+
 
 test ('Phones link has display:flex' , async ({ page }) => {
   await page.goto( 'https://www.demoblaze.com/index.html' );
