@@ -43,3 +43,10 @@ test ('Phones link has display:flex' , async ({ page }) => {
   const phonesLink = page.getByRole('link', { name: 'Phones' });
   await expect(phonesLink).toHaveCSS('display', 'flex');
 });
+
+test('Home link has correct color', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  const homeLink = page.getByRole('link', { name: 'Home' });
+  await expect(homeLink).toHaveCSS('color', 'rgb(255, 255, 255)');
+});
