@@ -25,6 +25,14 @@ test('main elements are visible', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'Sign up' })).toBeVisible();
 });
 
+test('Phones filter displays phone products', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.getByRole('link', { name: 'Phones' }).click();
+
+  const products = page.locator('.card-title');
+  await expect(products.first()).toBeVisible();
+})
 
 
 
