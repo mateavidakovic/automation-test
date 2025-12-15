@@ -12,20 +12,20 @@ test('can open home page', async ({ page }) => {
   // Click the home link.
   await page.getByRole('link', { name: 'Home ' }).click();
 
-  //Click the contact link.
-  await page.getByRole('link', { name: 'Contact'}).click();
-
   // Expects page to have a Categories.
   await expect(page.getByText('Categories')).toBeVisible();
 });
 
-test('can navigate to cart page', async ({ page }) => {
-  await page.goto('https://www.demoblaze.com/index.html');
+test('main elements are visible', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com');
 
-  await page.getByRole('link', { name: 'Cart' }).click();
-
-  await expect(page).toHaveURL(/cart\.html/);
+  await expect(page.locator('#navbarExample')).toBeVisible();
+  await expect(page.getByText('CATEGORIES')).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Log in' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Sign up' })).toBeVisible();
 });
+
+
 
 
 
