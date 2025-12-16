@@ -33,6 +33,19 @@ test('About Us modal has video element', async ({ page }) => {
 });
 
 
+test('About Us modal closes with x button', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.getByRole('link', { name: 'About us' }).click();
+  await expect(page.locator('#videoModal')).toBeVisible();
+
+  await page.locator('#videoModal .close').click();
+
+  await expect(page.locator('#videoModal')).toBeHidden();
+});
+
+  
+
 
 
 
