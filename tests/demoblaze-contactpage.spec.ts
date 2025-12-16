@@ -43,3 +43,15 @@ test('Contact modal fields are correct', async ({ page }) => {
 
 });
 
+test('Send message can be clicked', async ({ page }) => {
+    await page.goto('https://www.demoblaze.com/index.html');
+
+    await page.getByRole('link', { name: 'Contact' }).click();
+
+    page.once('dialog', (dialog) => dialog.accept());
+    await page.getByRole('button', { name: 'Send message' }).click();
+});
+
+
+
+
