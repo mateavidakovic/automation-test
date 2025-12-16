@@ -1,0 +1,24 @@
+import { test, expect } from '@playwright/test';
+
+test('About Us modal opens', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.getByRole('link', { name: 'About us' }).click();
+
+  await expect(page.locator('#videoModal')).toBeVisible();
+
+  await expect(page.locator('#videoModal').getByRole('heading', { name: 'About us' })).toBeVisible();
+});
+
+test('About Us modal closes', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.getByRole('link', { name: 'About us' }).click();
+
+  await expect(page.locator('#videoModal')).toBeVisible();
+
+  await page.locator('#videoModal .btn.btn-secondary').click();
+
+  await expect(page.locator('#videoModal')).toBeHidden();
+});
+
