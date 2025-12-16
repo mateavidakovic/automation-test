@@ -60,6 +60,19 @@ test('Contact modal body is white', async ({ page }) => {
   await expect(body).toHaveCSS('background-color', 'rgb(255, 255, 255)');
 });
 
+test('Send message button styling is correct', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.getByRole('link', { name: 'Contact' }).click();
+
+  const btn = page.getByRole('button', { name: 'Send message' });
+
+  await expect(btn).toHaveCSS('color', 'rgb(255, 255, 255)');
+  await expect(btn).toHaveCSS('border-radius', '4px');
+});
+
+
+
 
 
 
