@@ -30,4 +30,18 @@ test('Cart page has main elements and headers', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Place Order' })).toBeVisible();
 });
 
+test('Cart Products heading has correct design', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.locator('#cartur').click();
+
+  const productsHeading = page.getByRole('heading', { name: 'Products' });
+
+  await expect(productsHeading).toBeVisible();
+
+  await expect(productsHeading).toHaveCSS('color', 'rgb(41, 43, 44)');
+  await expect(productsHeading).toHaveCSS('font-size', '32px');
+  await expect(productsHeading).toHaveCSS('font-weight', '500');
+});
+
 
