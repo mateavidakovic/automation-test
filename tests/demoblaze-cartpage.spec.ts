@@ -17,3 +17,17 @@ test('User can add a product to the cart', async ({ page }) => {
   const cartTable = page.locator('#tbodyid');
   await expect(cartTable).toContainText('Samsung galaxy s6');
 });
+
+test('Cart page has main elements and headers', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+  await page.locator('#cartur').click();
+
+  await expect(page.getByText('Products')).toBeVisible();
+  await expect(page.getByText('Pic')).toBeVisible();
+  await expect(page.getByText('Title')).toBeVisible();
+  await expect(page.getByText('Price')).toBeVisible();
+  await expect(page.getByText('Total')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Place Order' })).toBeVisible();
+});
+
+
