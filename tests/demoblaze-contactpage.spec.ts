@@ -19,3 +19,11 @@ test('Contact modal closes', async ({ page }) => {
   await page.locator('#exampleModal .btn.btn-secondary').click();
   await expect(page.locator('#exampleModal')).toBeHidden();
 });
+
+test('Contact modal has correct title', async ({ page }) => {
+    await page.goto('https://www.demoblaze.com/index.html');
+
+    await page.getByRole('link', { name: 'Contact' }).click();
+
+    await expect(page.getByText('New message')).toBeVisible();
+})
