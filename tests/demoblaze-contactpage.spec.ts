@@ -52,6 +52,15 @@ test('Send message can be clicked', async ({ page }) => {
     await page.getByRole('button', { name: 'Send message' }).click();
 });
 
+test('Contact modal body is white', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+  await page.getByRole('link', { name: 'Contact' }).click();
+
+  const body = page.locator('#exampleModal .modal-content');
+  await expect(body).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+});
+
+
 
 
 
