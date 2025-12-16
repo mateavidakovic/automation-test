@@ -26,7 +26,7 @@ test('Cart page has main elements and headers', async ({ page }) => {
   await expect(page.getByText('Pic')).toBeVisible();
   await expect(page.getByText('Title')).toBeVisible();
   await expect(page.getByText('Price')).toBeVisible();
-  await expect(page.getByText('Total')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Total' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Place Order' })).toBeVisible();
 });
 
