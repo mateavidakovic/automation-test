@@ -44,6 +44,25 @@ test('About Us modal closes with x button', async ({ page }) => {
   await expect(page.locator('#videoModal')).toBeHidden();
 });
 
+
+test('About Us modal title has correct CSS styling', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+ 
+  await page.getByRole('link', { name: 'About us' }).click();
+
+  const aboutTitle = page.locator('#videoModalLabel');
+
+  await expect(aboutTitle).toBeVisible();
+
+  await expect(aboutTitle).toHaveCSS('color', 'rgb(134, 134, 136)');
+  await expect(aboutTitle).toHaveCSS('display', 'block');
+  await expect(aboutTitle).toHaveCSS('font-size', '20px');
+  await expect(aboutTitle).toHaveCSS('font-weight', '500');
+  await expect(aboutTitle).toHaveCSS('line-height', '30px');
+});
+
+
   
 
 
