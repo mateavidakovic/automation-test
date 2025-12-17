@@ -30,3 +30,23 @@ test('Empty login shows required fields alert', async ({ page }) => {
 
   await expect(loginModal).toBeVisible();
 });
+
+test('Login with wrong password shows error alert', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.getByRole('link', { name: 'Log in' }).click();
+  const loginModal = page.locator('#logInModal');
+  await expect(loginModal).toBeVisible();
+
+  await loginModal.locator('#loginusername').fill('ttesstt');
+  await loginModal.locator('#loginpassword').fill('wrongpass');
+
+  page.once('dialog', dialog => {
+    expect(dialog.message()).toBe('Wrong password.');
+    dialog.accept(); // zatvori alert
+  });
+
+  await loginModal.getByRole('button', { name: 'Log in' }).click();
+
+  await expect(loginModal).toBeVisible();
+});
