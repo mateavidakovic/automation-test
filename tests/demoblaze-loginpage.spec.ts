@@ -67,3 +67,19 @@ test('User can successfully log in with valid credentials', async ({ page }) => 
   const welcomeText = page.getByText('Welcome mvidakovic', { exact: false });
   await expect(welcomeText).toBeVisible();
 });
+
+
+test('Log in modal heading has correct styling', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.getByRole('link', { name: 'Log in' }).click();
+
+  const loginModalHeader = page.locator('#logInModal .modal-header');
+
+  await expect(loginModalHeader).toBeVisible();
+
+  await expect(loginModalHeader).toHaveCSS('display', 'flex');
+  await expect(loginModalHeader).toHaveCSS('align-items', 'center');
+});
+
+
