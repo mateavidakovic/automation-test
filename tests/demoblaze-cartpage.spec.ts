@@ -18,6 +18,31 @@ test('User can add a product to the cart', async ({ page }) => {
   await expect(cartTable).toContainText('Samsung galaxy s6');
 });
 
+test('User can remove a product from the cart', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  const samsungLink = page.getByRole('link', { name: 'Samsung galaxy s6' }).first();
+  await samsungLink.click();
+  await page.waitForLoadState('domcontentloaded');
+
+  page.once('dialog', dialog => dialog.accept());
+  await page.getByRole('link', { name: 'Add to cart' }).click();
+
+  await page.waitForTimeout(1000);
+
+  await page.locator('#cartur').click();
+
+  const firstRow = page.locator('#tbodyid .success').first();
+  await expect(firstRow).toContainText('Samsung galaxy s6');
+
+  await firstRow.getByText('Delete').click();
+
+  await page.waitForTimeout(1000);
+
+  await expect(page.locator('#tbodyid .success')).toHaveCount(0);
+});
+
+
 test('Cart page has main elements and headers', async ({ page }) => {
   await page.goto('https://www.demoblaze.com/index.html');
   await page.locator('#cartur').click();
