@@ -43,10 +43,27 @@ test('Login with wrong password shows error alert', async ({ page }) => {
 
   page.once('dialog', dialog => {
     expect(dialog.message()).toBe('Wrong password.');
-    dialog.accept(); // zatvori alert
+    dialog.accept();
   });
 
   await loginModal.getByRole('button', { name: 'Log in' }).click();
 
   await expect(loginModal).toBeVisible();
+});
+
+
+test('User can successfully log in with valid credentials', async ({ page }) => {
+  await page.goto('https://www.demoblaze.com/index.html');
+
+  await page.getByRole('link', { name: 'Log in' }).click();
+  const loginModal = page.locator('#logInModal');
+  await expect(loginModal).toBeVisible();
+
+  await loginModal.locator('#loginusername').fill('mvidakovic');
+  await loginModal.locator('#loginpassword').fill('password');
+
+  await loginModal.getByRole('button', { name: 'Log in' }).click();
+
+  const welcomeText = page.getByText('Welcome mvidakovic', { exact: false });
+  await expect(welcomeText).toBeVisible();
 });
