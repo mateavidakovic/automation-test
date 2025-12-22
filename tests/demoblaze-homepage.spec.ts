@@ -36,7 +36,6 @@ test('Phones filter displays phone products', async ({ page }) => {
 
 
 
-
 test ('Phones link has display:flex' , async ({ page }) => {
   await page.goto( 'https://www.demoblaze.com/index.html' );
 
@@ -49,4 +48,23 @@ test('Home link has correct color', async ({ page }) => {
 
   const homeLink = page.getByRole('link', { name: 'Home' });
   await expect(homeLink).toHaveCSS('color', 'rgb(255, 255, 255)');
+});
+
+
+import { DemoblazeHomePage } from '../pages/pages/home.page';
+
+test('Home page: Cart link is visible', async ({ page }) => {
+  const home = new DemoblazeHomePage(page);
+
+  await home.goto();
+  await expect(home.cartLink).toBeVisible();
+});
+
+test('Home page: can open Login modal', async ({ page }) => {
+  const home = new DemoblazeHomePage(page);
+
+  await home.goto();
+  await home.loginLink.click();
+
+  await expect(page.locator('#logInModal')).toBeVisible();
 });
