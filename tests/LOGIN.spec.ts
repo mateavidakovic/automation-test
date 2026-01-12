@@ -1,8 +1,6 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/pages/login.page'; 
+import { test, expect } from './fixtures/fixtures'; 
 
-test('Log in modal opens and fields are visible', async ({ page }) => {
-  const loginPage = new LoginPage(page);
+test('Log in modal opens and fields are visible', async ({ loginPage }) => {
 
   await loginPage.goto();
   await loginPage.openLoginModal();
@@ -11,8 +9,7 @@ test('Log in modal opens and fields are visible', async ({ page }) => {
   await loginPage.expectFieldsVisible();
 });
 
-test('Empty login shows required fields alert', async ({ page }) => {
-  const loginPage = new LoginPage(page)
+test('Empty login shows required fields alert', async ({ loginPage }) => {
 
   await loginPage.goto()
   await loginPage.openLoginModal();
@@ -22,8 +19,7 @@ test('Empty login shows required fields alert', async ({ page }) => {
   await loginPage.expectModalVisible();
 });
 
-test('Login with wrong password shows error alert', async ({ page }) => {
-  const loginPage = new LoginPage(page);
+test('Login with wrong password shows error alert', async ({ loginPage }) => {
 
   await loginPage.goto();
   await loginPage.openLoginModal();
@@ -37,8 +33,7 @@ test('Login with wrong password shows error alert', async ({ page }) => {
 });
 
 
-test('User can successfully log in with valid credentials', async ({ page }) => {
-  const loginPage = new LoginPage(page);
+test('User can successfully log in with valid credentials', async ({ loginPage }) => {
 
   await loginPage.goto();
   await loginPage.openLoginModal();
@@ -51,8 +46,7 @@ test('User can successfully log in with valid credentials', async ({ page }) => 
 });
 
 
-test('Log in modal heading has correct styling', async ({ page }) => {
-  const loginPage = new LoginPage(page);
+test('Log in modal heading has correct styling', async ({ loginPage }) => {
 
   await loginPage.goto();
   await loginPage.openLoginModal();

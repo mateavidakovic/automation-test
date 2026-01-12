@@ -1,8 +1,6 @@
-import { test, expect } from '@playwright/test';
-import { CartPage } from '../pages/pages/cart.page'; 
+import { test, expect } from './fixtures/fixtures';
 
-test('User can add a product to the cart', async ({ page }) => {
-  const cartPage = new CartPage(page);
+test('User can add a product to the cart', async ({ cartPage, page }) => {
 
   await cartPage.goto();
   await cartPage.addSamsungGalaxyS6ToCart();
@@ -13,8 +11,7 @@ test('User can add a product to the cart', async ({ page }) => {
   await cartPage.expectProductInCart('Samsung galaxy s6');
 });
 
-test('User can remove a product from the cart', async ({ page }) => {
-  const cartPage = new CartPage(page);
+test('User can remove a product from the cart', async ({ cartPage, page }) => {
 
   await cartPage.goto();
   await cartPage.addSamsungGalaxyS6ToCart();
@@ -32,8 +29,7 @@ test('User can remove a product from the cart', async ({ page }) => {
 });
 
 
-test('Cart page has main elements and headers', async ({ page }) => {
-  const cartPage = new CartPage(page);
+test('Cart page has main elements and headers', async ({ cartPage }) => {
 
   await cartPage.goto();
   await cartPage.openCart();
@@ -41,8 +37,7 @@ test('Cart page has main elements and headers', async ({ page }) => {
   await cartPage.expectCartMainElementsVisible();
 });
 
-test('Cart Products heading has correct design', async ({ page }) => {
-  const cartPage = new CartPage(page);
+test('Cart Products heading has correct design', async ({ cartPage }) => {
 
   await cartPage.goto();
   await cartPage.openCart();

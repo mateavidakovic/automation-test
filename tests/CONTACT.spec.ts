@@ -1,8 +1,6 @@
-import { test, expect } from '@playwright/test';
-import { ContactPage } from '../pages/pages/contact.page';
+import { test, expect } from './fixtures/fixtures';
 
-test('Contact modal opens', async ({ page }) => {
-  const contactPage = new ContactPage(page);
+test('Contact modal opens', async ({ contactPage }) => {
 
   await contactPage.goto();
   await contactPage.openContactModal();
@@ -10,8 +8,7 @@ test('Contact modal opens', async ({ page }) => {
   await contactPage.expectModalFieldsVisible();
 });
 
-test('Contact modal closes', async ({ page }) => {
-  const contactPage = new ContactPage(page);
+test('Contact modal closes', async ({ contactPage }) => {
 
   await contactPage.goto();
   await contactPage.openContactModal();
@@ -21,8 +18,7 @@ test('Contact modal closes', async ({ page }) => {
   await contactPage.expectModalClosed();
 });
 
-test('Contact modal has correct title', async ({ page }) => {
-  const contactPage = new ContactPage(page);
+test('Contact modal has correct title', async ({ contactPage }) => {
 
   await contactPage.goto();
   await contactPage.openContactModal();
@@ -30,8 +26,7 @@ test('Contact modal has correct title', async ({ page }) => {
   await expect.soft(contactPage.modalTitle).toBeVisible();
 });
 
-test('Contact modal fields are correct', async ({ page }) => {
-  const contactPage = new ContactPage(page);
+test('Contact modal fields are correct', async ({ contactPage }) => {
 
   await contactPage.goto();
   await contactPage.openContactModal();
@@ -42,8 +37,7 @@ test('Contact modal fields are correct', async ({ page }) => {
 
 });
 
-test('Send message can be clicked', async ({ page }) => {
-  const contactPage = new ContactPage(page);
+test('Send message can be clicked', async ({ contactPage }) => {
 
   await contactPage.goto();
   await contactPage.openContactModal();
@@ -51,16 +45,14 @@ test('Send message can be clicked', async ({ page }) => {
   await contactPage.sendMessageAcceptDialog();
 });
 
-test('Contact modal body is white', async ({ page }) => {
-  const contactPage = new ContactPage(page);
+test('Contact modal body is white', async ({ contactPage }) => {
 
   await contactPage.goto();
   await contactPage.openContactModal();
   await expect.soft(contactPage.modalBody).toHaveCSS('background-color', 'rgb(255, 255, 255)');
 });
 
-test('Send message button styling is correct', async ({ page }) => {
-  const contactPage = new ContactPage(page);
+test('Send message button styling is correct', async ({ contactPage }) => {
 
   await contactPage.goto();
   await contactPage.openContactModal();

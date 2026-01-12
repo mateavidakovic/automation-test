@@ -1,8 +1,6 @@
-import { test, expect } from '@playwright/test';
-import { AboutPage } from '../pages/pages/aboutus.page';
+import { test, expect } from './fixtures/fixtures'
 
-test('About Us modal opens', async ({ page }) => {
-  const aboutPage = new AboutPage(page);
+test('About Us modal opens', async ({ aboutPage }) => {
 
   await aboutPage.goto();
   await aboutPage.openAboutModal();
@@ -11,8 +9,7 @@ test('About Us modal opens', async ({ page }) => {
   await aboutPage.expectHeadingVisible();
 });
 
-test('About Us modal closes with footer button', async ({ page }) => {
-  const aboutPage = new AboutPage(page);
+test('About Us modal closes with footer button', async ({ aboutPage }) => {
 
   await aboutPage.goto();
   await aboutPage.openAboutModal();
@@ -22,8 +19,7 @@ test('About Us modal closes with footer button', async ({ page }) => {
   await aboutPage.expectModalClosed();
 });
 
-test('About Us modal has video element', async ({ page }) => {
-  const aboutPage = new AboutPage(page);
+test('About Us modal has video element', async ({ aboutPage }) => {
 
   await aboutPage.goto();
   await aboutPage.openAboutModal();
@@ -32,8 +28,7 @@ test('About Us modal has video element', async ({ page }) => {
 });
 
 
-test('About Us modal closes with x button', async ({ page }) => {
-  const aboutPage = new AboutPage(page);
+test('About Us modal closes with x button', async ({ aboutPage }) => {
 
   await aboutPage.goto();
   await aboutPage.openAboutModal();
@@ -44,8 +39,7 @@ test('About Us modal closes with x button', async ({ page }) => {
 });
 
 
-test('About Us modal title has correct CSS styling', async ({ page }) => {
-  const aboutPage = new AboutPage(page);
+test('About Us modal title has correct CSS styling', async ({ aboutPage }) => {
 
   await aboutPage.goto();
   await aboutPage.openAboutModal();
